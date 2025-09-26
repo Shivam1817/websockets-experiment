@@ -8,19 +8,22 @@ const server = http.createServer(function(request, response) {
 
 const wss = new WebSocketServer({ server });
 
-wss.on('connection', function connection(ws){
-    ws.on('error', console.error);
+let usercount = 0;
 
-    ws.on('message', function message(data, isBinary){
+wss.on('connection', function connection(socket){
+    socket.on('error', console.error);
+
+    socket.on('message', function message(data, isBinary){
         wss.clients.forEach(function each(client){
             if(client.readyState === WebSocket.OPEN){
-                client.send(data, { binary: isBinary });
+                client.send(data , { binary: isBinary });
             }
         });
     });
-    ws.send('Hi there, I am a WebSocket server');
+    console.log("user connected : ", ++usercount);
+    socket.send('Hi there, I am a WebSocket server');
 });
 
-server.listen(8080, () => {
-    console.log("Server is listening on port 8080");
+server.listen(8080, function() {
+    console.log((new Date()) + "Server is listening on port 8080");
 });
