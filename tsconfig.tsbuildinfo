@@ -1,1 +1,1 @@
-{"root":["./src/express.ts","./src/index.ts"],"version":"5.7.3"}
+{"root":["./react-ws/vite.config.ts","./react-ws/src/app.tsx","./react-ws/src/main.tsx","./src/express.ts","./src/index.ts"],"errors":true,"version":"5.7.3"}
